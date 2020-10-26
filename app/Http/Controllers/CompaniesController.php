@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Company;
 
 class CompaniesController extends Controller
 {
@@ -13,7 +14,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        return view('company.index');
     }
 
     /**
