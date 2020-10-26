@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Company;
 
 class CompaniesController extends Controller
 {
@@ -13,7 +14,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        return view('company.index')->with('companies', $companies);
     }
 
     /**
