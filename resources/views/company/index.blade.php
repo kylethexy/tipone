@@ -19,6 +19,18 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($companies as $company)
+                <tr class="table-dark text-dark">
+                    <td><a href="/company/{{$company->id}}">{{$company->name}}</a></td>
+                    <td>{{$company->email}}</td>
+                    <td>{{$company->website}}</td>
+                    <td>
+                        <a href="{{ url('/company/'.$company->id.'/edit')}}" type="button"
+                                class="btn btn-warning pull-left">Edit</a>
+                        <button type="button" class="btn btn-danger pull-right">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
