@@ -60,7 +60,11 @@ class EmployeesController extends Controller
      */
     public function show($id)
     {
-        //
+        //Find ID of employee
+        $employees = Employee::find($id);
+
+        //Redirect to show.blade.php in views
+        return view('employee.show')->with('employee', $employees);
     }
 
     /**
