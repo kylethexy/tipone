@@ -38,6 +38,16 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
+        //Form validation
+        //Image should not be mandatory, so nullable option is added
+        //Max:1999 image size limit
+        $this->validate($request, [
+            'name' => 'required',
+            'logo' => 'image|nullable|max:1999',
+            'email' => 'email|nullable',
+            'website' => 'nullable'
+        ]);
+
         //Handle File Upload
         if($request->hasFile('logo')){
             // Get filename with the extension
@@ -106,6 +116,16 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Form validation
+        //Image should not be mandatory, so nullable option is added
+        //Max:1999 image size limit
+        $this->validate($request, [
+            'name' => 'required',
+            'logo' => 'image|nullable|max:1999',
+            'email' => 'email|nullable',
+            'website' => 'nullable'
+        ]);
+
         //Handle File Upload
         if($request->hasFile('logo')){
             // Get filename with the extension

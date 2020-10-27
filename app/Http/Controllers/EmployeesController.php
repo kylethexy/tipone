@@ -36,6 +36,17 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
+        //Form validation
+        //First and Last name is required
+        //Email address must be in email format and allow empty field
+        //Phone must be numeric values only and allows blank values
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'email|nullable',
+            'phone' => 'numeric|nullable'
+        ]);
+
         //Generate new employee
         $employee = new Employee();
 
@@ -88,6 +99,17 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Form validation
+        //First and Last name is required
+        //Email address must be in email format and allow empty field
+        //Phone must be numeric values only and allows blank values
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'email|nullable',
+            'phone' => 'numeric|nullable'
+        ]);
+
         //Find employee
         $employee = Employee::find($id);
 
