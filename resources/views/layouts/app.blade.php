@@ -76,7 +76,11 @@
                 </div>
             </div>
         </nav>
-
+        <div class="py-4">
+            <div class="row justify-content-center">
+                @include('inc.messages')
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>
