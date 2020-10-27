@@ -66,42 +66,75 @@
                 <div class="row">
                     <div class="col">
                         <p>Company Name: {{$company->name}}</p>
-                        <p>Company Email: {{$company->email}}</p>
-                        <p>Company Website:{{$company->website}}</p>
+                        <p>Company Email:
+                            @if(!$company->email == null)
+                                {{$company->email}}
+                            @else
+                                No Email Found
+                            @endif
+                        </p>
+                        <p>Company Website:
+                            @if(!$company->website == null)
+                                {{$company->website}}
+                            @else
+                                No Website Found
+                            @endif
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <hr>
         <h1>Employee List</h1>
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($employees as $employee)
-                    <tr class="table-dark text-dark">
-                        <td><a href="/employee/{{$employee->id}}">{{$employee->first_name}} {{$employee->last_name}}</a></td>
-                        <td>{{$employee->email}}</td>
-                        <td>{{$employee->phone}}</td>
-                        <td>
-                            <a href="/employee/{{$employee->id}}/edit" type="button" class="btn btn-warning">Edit</a>
-                            <button type="button" class="btn btn-danger pull-right" onClick="confirmDelete({{$employee->id}})">Delete</button>
-                            {!!Form::open(['action' => ['EmployeesController@destroy', $employee->id],
-                                        'method' => 'POST', 'class' => 'pull-right', 'id' => 'form_delete'.$employee->id])!!}
-                                {{Form::hidden('_method', 'DELETE')}}
-                            {!!Form::close()!!}
-                        </td>
-                        </tr>
+        @if(count($employees) > 0)
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($employees as $employee)
+                        <tr class="table-dark text-dark">
+                            <td><a href="/employee/{{$employee->id}}">{{$employee->first_name}} {{$employee->last_name}}</a></td>
+                            <td>
+                                @if(!$employee->email == null)
+                                    {{$employee->email}}
+                                @else
+                                    No Email Found
+                                @endif
+                            </td>
+                            <td>
+                                @if(!$employee->phone == null)
+                                    {{$employee->phone}}
+                                @else
+                                    No Phone Found
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/employee/{{$employee->id}}/edit" type="button" class="btn btn-warning">Edit</a>
+                                <button type="button" class="btn btn-danger pull-right" onClick="confirmDelete({{$employee->id}})">Delete</button>
+                                {!!Form::open(['action' => ['EmployeesController@destroy', $employee->id],
+                                            'method' => 'POST', 'class' => 'pull-right', 'id' => 'form_delete'.$employee->id])!!}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                {!!Form::close()!!}
+                            </td>
+                            </tr>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p>No employees found</p>
+                </div>
+            </div>
+        @endif
     </div>
 
 <script>
