@@ -12,10 +12,22 @@
                 <p class="card-text">{{$employee->first_name}} {{$employee->last_name}}</p>
             <hr>
             <h5 class="card-title">Email</h5>
-                <p class="card-text">{{$employee->email}}</p>
+                <p class="card-text">
+                    @if(!$employee->email == null)
+                        {{$employee->email}}
+                    @else
+                        No Email Found
+                    @endif
+                </p>
             <hr>
             <h5 class="card-title">Phone</h5>
-                <p class="card-text">{{$employee->phone}}</p>
+                <p class="card-text">
+                    @if(!$employee->phone == null)
+                        {{$employee->phone}}
+                    @else
+                        No Email Found
+                    @endif
+                </p>
             <hr>
             <h5 class="card-title">Company</h5>
                 <a href="/company/{{$employee->company->id}}" class="card-text">{{$employee->company->name}}</a>
