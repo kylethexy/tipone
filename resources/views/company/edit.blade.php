@@ -31,7 +31,11 @@
                     <div class="form-group col-md-4">
                         {{Form::label('logo', 'Company Logo')}}
                         <hr>
-                        <img id="logo" class="img-thumbnail" style="max-width:200px; max-height:200px;" src="{{asset('storage/images/'.$company->logo)}}">
+                        @if($company->logo == 'noimage.jpg')
+                            <img id="logo" class="img-thumbnail" style="max-width:200px; max-height:200px;" src="{{asset('storage/'.$company->logo)}}">
+                        @else
+                            <img class="img-thumbnail" style="max-width: 200px; max-height: 200px;" src="{{asset('storage/images/'.$company->logo)}}">
+                        @endif
                         <hr>
                         {{Form::file('logo', ['onchange' => 'changeImage()'])}}
                     </div>
@@ -45,6 +49,12 @@
 </div>
 
 <script>
+    /**
+     * This function is used to dynamically change the image preview
+     * as the user uploads an logo
+     * @return void
+     */
+
     function changeImage(){
         var selectedFile = event.target.files[0];
         var reader = new FileReader();
