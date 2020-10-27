@@ -8,6 +8,16 @@ use App\Employee;
 class EmployeesController extends Controller
 {
     /**
+     * Create a new controller instance.
+     * Add this so that guests can't access pages without an account
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
