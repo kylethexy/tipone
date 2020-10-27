@@ -31,7 +31,7 @@
                         </td>
                         <td>
                             @if(!$employee->phone == null)
-                                <a href="{{$employee->phone}}">{{$employee->phone}}</a>
+                                {{$employee->phone}}
                             @else
                                 No Phone Found
                             @endif
@@ -43,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$employees->links()}}
     @else
         <hr>
         <div class="row">

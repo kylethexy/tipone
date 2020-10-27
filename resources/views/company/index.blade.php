@@ -50,6 +50,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$companies->links()}}
     @else
         <hr>
         <div class="row">

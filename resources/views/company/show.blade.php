@@ -60,7 +60,11 @@
 
         <div class="row">
             <div class="col-md-3 text-center">
-                <img class="img-thumbnail" style="max-width: 200px; max-height: 200px;" src="{{asset('storage/images/'.$company->logo)}}">
+                @if($company->logo == 'noimage.jpg')
+                    <img class="img-thumbnail" style="max-width: 200px; max-height: 200px;" src="{{asset('storage/'.$company->logo)}}">
+                @else
+                    <img class="img-thumbnail" style="max-width: 200px; max-height: 200px;" src="{{asset('storage/images/'.$company->logo)}}">
+                @endif
             </div>
             <div class="col-md-9">
                 <div class="row">

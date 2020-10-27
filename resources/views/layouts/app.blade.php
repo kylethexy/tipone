@@ -32,14 +32,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('company') }}">{{ __('Company') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('employee') }}">{{ __('Employee') }}</a>
-                        </li>
-                    </ul>
+                    @if(!Auth::guest())
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('company') }}">{{ __('Company') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('employee') }}">{{ __('Employee') }}</a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -76,7 +78,11 @@
                 </div>
             </div>
         </nav>
-
+        <div class="py-4">
+            <div class="row justify-content-center">
+                @include('inc.messages')
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>
