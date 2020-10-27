@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Employee;
 
 class EmployeesController extends Controller
 {
@@ -34,7 +35,20 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Generate new employee
+        $employee = new Employee();
+
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->company_id = $request->input('company_id');
+        $employee->email = $request->input('email');
+        $employee->phone = $request->input('phone');
+
+        //SQL execute
+        $employee->save();
+
+        //Confirm message
+        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Added');
     }
 
     /**
