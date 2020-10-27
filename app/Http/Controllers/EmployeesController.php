@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Employee;
 
 class EmployeesController extends Controller
 {
@@ -13,7 +14,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
+        return view('employee.index')->with('employees' , $employees);
     }
 
     /**
@@ -34,7 +36,20 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Generate new employee
+        $employee = new Employee();
+
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->company_id = $request->input('company_id');
+        $employee->email = $request->input('email');
+        $employee->phone = $request->input('phone');
+
+        //SQL execute
+        $employee->save();
+
+        //Confirm message
+        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Added');
     }
 
     /**
@@ -45,7 +60,11 @@ class EmployeesController extends Controller
      */
     public function show($id)
     {
-        //
+        //Find ID of employee
+        $employees = Employee::find($id);
+
+        //Redirect to show.blade.php in views
+        return view('employee.show')->with('employee', $employees);
     }
 
     /**
@@ -56,7 +75,8 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        return view('employee.edit')->with('employee', $employee);
     }
 
     /**
@@ -68,7 +88,19 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Find employee
+        $employee = Employee::find($id);
+
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->email = $request->input('email');
+        $employee->phone = $request->input('phone');
+
+        //SQL execute
+        $employee->save();
+
+        //Confirm message
+        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Updated');
     }
 
     /**
@@ -79,6 +111,14 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Find Employee
+        $employee = Employee::find($id);
+        $company_id = $employee->company_id;
+
+        //Delete Employee
+        $employee->delete();
+
+        //Confirm message
+        return redirect('/company/'.$company_id)->with('success', 'Employee Removed');
     }
 }

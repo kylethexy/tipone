@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use App\Employee;
 use Illuminate\Support\Facades\Storage;
 
 class CompaniesController extends Controller
@@ -79,7 +80,9 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        $employees = Employee::where('company_id', $id)->get();
+        return view('company.show')->with('company', $company)->with('employees', $employees);
     }
 
     /**
