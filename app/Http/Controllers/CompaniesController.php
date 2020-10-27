@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use Illuminate\Support\Facades\Storage;
 
 class CompaniesController extends Controller
 {
@@ -142,6 +143,19 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Find company
+        $company = Company::find($id);
+
+        //Check if there's an image. Don't delete if noimage is in db
+        if($company->logo != 'noimage.jpg'){
+            //Delete Image
+            Storage::delete('public/images/'.$company->logo);
+        }
+
+        //Delete company
+        $company->delete();
+
+        //Confirm message
+        return redirect('/company')->with('success', 'Company Removed');
     }
 }
