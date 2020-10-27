@@ -75,7 +75,8 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        return view('employee.edit')->with('employee', $employee);
     }
 
     /**
@@ -87,7 +88,19 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Find employee
+        $employee = Employee::find($id);
+
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->email = $request->input('email');
+        $employee->phone = $request->input('phone');
+
+        //SQL execute
+        $employee->save();
+
+        //Confirm message
+        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Updated');
     }
 
     /**
@@ -98,6 +111,14 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Find Employee
+        $employee = Employee::find($id);
+        $company_id = $employee->company_id;
+
+        //Delete Employee
+        $employee->delete();
+
+        //Confirm message
+        return redirect('/company/'.$company_id)->with('success', 'Employee Removed');
     }
 }
