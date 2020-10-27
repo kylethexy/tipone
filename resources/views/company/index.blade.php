@@ -62,6 +62,13 @@
 </div>
 
 <script>
+
+    /**
+     * This function is used to display a prompt confirming
+     * the user to proceed with the delete function
+     * @param int $var
+     */
+
     function confirmDelete($var){
         if (confirm("Are you sure you want to delete this record? This action cannot be undone.")) {
             document.getElementById("form_delete" + $var).submit();

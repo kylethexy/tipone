@@ -53,7 +53,7 @@ class CompaniesController extends Controller
         //Max:1999 image size limit
         $this->validate($request, [
             'name' => 'required',
-            'logo' => 'image|nullable|max:1999',
+            'logo' => 'image|nullable|max:1999|dimensions:min_width=100,min_height=100',
             'email' => 'email|nullable',
             'website' => 'nullable'
         ]);
