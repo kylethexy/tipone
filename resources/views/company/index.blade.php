@@ -27,12 +27,26 @@
                     <td>
                         <a href="{{ url('/company/'.$company->id.'/edit')}}" type="button"
                                 class="btn btn-warning pull-left">Edit</a>
-                        <button type="button" class="btn btn-danger pull-right">Delete</button>
+                        <button type="button" class="btn btn-danger pull-right" onClick="confirmDelete({{$company->id}})">Delete</button>
+                        {!!Form::open(['action' => ['CompaniesController@destroy', $company->id],
+                                        'method' => 'POST', 'class' => 'pull-right', 'id' => 'form_delete'.$company->id])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                        {!!Form::close()!!}
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmDelete($var){
+        if (confirm("Are you sure you want to delete this record? This action cannot be undone.")) {
+            document.getElementById("form_delete" + $var).submit();
+        } else {
+
+        }
+    }
+</script>
 
 @endsection
