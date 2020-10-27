@@ -43,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$employees->links()}}
     @else
         <hr>
         <div class="row">
