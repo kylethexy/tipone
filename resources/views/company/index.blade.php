@@ -3,11 +3,13 @@
 @section('content')
 
 <div class="container">
-    <div style="float:left">
-        <h1>Company List</h1>
-    </div>
-    <div style="float:right">
-        <a href="{{ url('/company/create') }}" type="button" class="btn btn-success">Add Company</a>
+    <div class="row">
+        <div class="col">
+            <h1>Company List</h1>
+        </div>
+        <div class="col">
+            <a href="{{ url('/company/create') }}" type="button" class="btn btn-success float-right">Add Company</a>
+        </div>
     </div>
     @if(count($companies) > 0)
         <table class="table table-dark">
