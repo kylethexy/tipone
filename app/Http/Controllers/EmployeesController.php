@@ -1,10 +1,24 @@
 <?php
+/**
+ * Class EmployeesController | Http/EmployeesController.php
+ *
+ * @package Http
+ * @subpackage EmployeesController
+ * @author Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @version v1.2 (10/28/2020)
+ */
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
 
+/**
+ * Class EmployeesController - active record
+ *
+ * This controller is responsible for handling the behavior of the employees
+ * page for CRUD functionality.
+ */
 class EmployeesController extends Controller
 {
     /**

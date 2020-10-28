@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class CompaniesController | Http/CompaniesController.php
+ *
+ * @package Http
+ * @subpackage CompaniesController
+ * @author Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @version v1.2 (10/28/2020)
+ */
 
 namespace App\Http\Controllers;
 
@@ -7,6 +15,12 @@ use App\Company;
 use App\Employee;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class CompaniesController - active record
+ *
+ * This controller is responsible for handling the behavior of the companies
+ * page for CRUD functionality.
+ */
 class CompaniesController extends Controller
 {
     /**
