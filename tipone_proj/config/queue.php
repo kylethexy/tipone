@@ -1,4 +1,16 @@
 <?php
+/**
+ * Class Queue | Config/Queue.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Config
+ * @subpackage Queue
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 return [
 
@@ -53,7 +65,9 @@ return [
             'driver' => 'sqs',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'prefix' => env(
+                'SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'
+            ),
             'queue' => env('SQS_QUEUE', 'your-queue-name'),
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
         ],

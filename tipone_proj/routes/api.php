@@ -1,15 +1,19 @@
 <?php
 /**
  * Route API | routes/api.php
+ * php version 7.3.23
  *
  * This route is where the API routes are registered for the application.
  * These routes are loaded by the RouteServiceProvider within a group which
  * is assigned the "api" middleware group.
  *
- * @package Route
+ * @category   PHP
+ * @package    Route
  * @subpackage API
- * @author Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
- * @version v1.2 (10/28/2020)
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
  */
 
 use Illuminate\Http\Request;
