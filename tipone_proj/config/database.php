@@ -1,4 +1,16 @@
 <?php
+/**
+ * Class Database | Config/Database.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Config
+ * @subpackage Database
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 use Illuminate\Support\Str;
 
@@ -58,9 +70,11 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
+            'options' => extension_loaded('pdo_mysql') ? array_filter(
+                [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+                ]
+            ) : [],
         ],
 
         'pgsql' => [
@@ -123,7 +137,11 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env(
+                'REDIS_PREFIX', Str::slug(
+                    env('APP_NAME', 'laravel'), '_'
+                ).'_database_'
+            ),
         ],
 
         'default' => [

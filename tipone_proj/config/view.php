@@ -1,4 +1,16 @@
 <?php
+/**
+ * Class View | Config/View.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Config
+ * @subpackage View
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 return [
 

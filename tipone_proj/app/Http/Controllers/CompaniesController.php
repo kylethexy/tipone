@@ -1,11 +1,15 @@
 <?php
 /**
  * Class CompaniesController | Http/CompaniesController.php
+ * php version 7.3.23
  *
- * @package Http
+ * @category   PHP
+ * @package    Http
  * @subpackage CompaniesController
- * @author Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
- * @version v1.2 (10/28/2020)
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
  */
 
 namespace App\Http\Controllers;
@@ -20,12 +24,19 @@ use Illuminate\Support\Facades\Storage;
  *
  * This controller is responsible for handling the behavior of the companies
  * page for CRUD functionality.
+ *
+ * @category PHP
+ * @package  Controllers
+ * @author   Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link     http://127.0.0.1:8000
  */
 class CompaniesController extends Controller
 {
     /**
      * Create a new controller instance.
      * Add this so that guests can't access pages without an account
+     *
      * @return void
      */
     public function __construct()
@@ -57,7 +68,8 @@ class CompaniesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param $request \Illuminate\Http\Request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -65,15 +77,18 @@ class CompaniesController extends Controller
         //Form validation
         //Image should not be mandatory, so nullable option is added
         //Max:1999 image size limit
-        $this->validate($request, [
+        $this->validate(
+            $request, [
             'name' => 'required',
-            'logo' => 'image|nullable|max:1999|dimensions:min_width=100,min_height=100',
+            'logo' => 'image|nullable|max:1999|
+                        dimensions:min_width=100,min_height=100',
             'email' => 'email|nullable',
             'website' => 'nullable'
-        ]);
+            ]
+        );
 
         //Handle File Upload
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             // Get filename with the extension
             $fileNameWithExt = $request->file('logo')->getClientOriginalName();
             // Get just filename
@@ -81,12 +96,14 @@ class CompaniesController extends Controller
             // Get just extension
             $extension = $request->file('logo')->getClientOriginalExtension();
             // Filename to store
-            // The filename will be unique so that files with the same name don't overlap
+            // The filename will be unique
+            // so that files with the same name don't overlap
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
             // Upload image
             // storeAs is going to go to storage/app/public
-            $path = $request->file('logo')->storeAs('public/images', $fileNameToStore);
-        }else{
+            $path = $request->file('logo')
+                ->storeAs('public/images', $fileNameToStore);
+        } else {
             // Set default image
             $fileNameToStore = 'noimage.jpg';
         }
@@ -109,20 +126,24 @@ class CompaniesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $company = Company::find($id);
-        $employees = Employee::where('company_id', $id)->get();
-        return view('company.show')->with('company', $company)->with('employees', $employees);
+        $employees = Employee::where('company_id', $id)
+                        ->get();
+        return view('company.show')->with('company', $company)
+            ->with('employees', $employees);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -134,8 +155,9 @@ class CompaniesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param $request \Illuminate\Http\Request
+     * @param int $id      //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -143,15 +165,18 @@ class CompaniesController extends Controller
         //Form validation
         //Image should not be mandatory, so nullable option is added
         //Max:1999 image size limit
-        $this->validate($request, [
+        $this->validate(
+            $request, [
             'name' => 'required',
-            'logo' => 'image|nullable|max:1999|dimensions:min_width=100,min_height=100',
+            'logo' => 'image|nullable|max:1999|
+                    dimensions:min_width=100,min_height=100',
             'email' => 'email|nullable',
             'website' => 'nullable'
-        ]);
+            ]
+        );
 
         //Handle File Upload
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             // Get filename with the extension
             $fileNameWithExt = $request->file('logo')->getClientOriginalName();
             // Get just filename
@@ -159,11 +184,13 @@ class CompaniesController extends Controller
             // Get just extension
             $extension = $request->file('logo')->getClientOriginalExtension();
             // Filename to store
-            // The filename will be unique so that files with the same name don't overlap
+            // The filename will be unique
+            // so that files with the same name don't overlap
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
             // Upload image
             // storeAs is going to go to storage/app/public
-            $path = $request->file('logo')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('logo')
+                ->storeAs('public/images', $fileNameToStore);
         }
 
         //Find company
@@ -172,7 +199,7 @@ class CompaniesController extends Controller
         $company->name = $request->input('name');
         $company->website = $request->input('website');
         $company->email = $request->input('email');
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $company->logo = $fileNameToStore;
         }
         //SQL execute
@@ -185,7 +212,8 @@ class CompaniesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -194,7 +222,7 @@ class CompaniesController extends Controller
         $company = Company::find($id);
 
         //Check if there's an image. Don't delete if noimage is in db
-        if($company->logo != 'noimage.jpg'){
+        if ($company->logo != 'noimage.jpg') {
             //Delete Image
             Storage::delete('public/images/'.$company->logo);
         }
