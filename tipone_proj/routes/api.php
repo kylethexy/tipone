@@ -25,6 +25,10 @@ use Illuminate\Http\Request;
  *
  */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+ /**
+  * Auto-generated route  by initial laravel installation.
+  * Comment out this part to prevent conflict with route:cache command
+  */
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
