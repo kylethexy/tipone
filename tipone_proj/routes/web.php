@@ -21,9 +21,10 @@
  *
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * This line enables redirection from the root index to the welcome page.
+ */
+Route::get('/', 'HomeController@welcome')->name('welcome');
 
 /**
  *
