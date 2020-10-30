@@ -1,4 +1,16 @@
 <?php
+/**
+ * Class VerificationController | Http/Controllers/Auth/VerificationController.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Auth
+ * @subpackage VerificationController
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 namespace App\Http\Controllers\Auth;
 
@@ -6,6 +18,15 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
+/**
+ * Class VerificationController - active record
+ *
+ * @category PHP
+ * @package  Auth
+ * @author   Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link     http://127.0.0.1:8000
+ */
 class VerificationController extends Controller
 {
     /*

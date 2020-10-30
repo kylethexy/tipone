@@ -1,9 +1,31 @@
 <?php
+/**
+ * Class Kernel | app/Http/Kernel.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Http
+ * @subpackage Kernel
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Class Kernel - active record
+ * File contains code about middleware stack.
+ *
+ * @category PHP
+ * @package  App
+ * @author   Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link     http://127.0.0.1:8000
+ */
 class Kernel extends HttpKernel
 {
     /**

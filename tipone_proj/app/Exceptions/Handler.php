@@ -1,10 +1,31 @@
 <?php
+/**
+ * Class Handler | App/Exceptions/Handler.php
+ * php version 7.3.23
+ *
+ * @category   PHP
+ * @package    Exceptions
+ * @subpackage Handler
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
+ */
 
 namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+/**
+ * Class Handler - active record
+ *
+ * @category PHP
+ * @package  Handler
+ * @author   Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link     http://127.0.0.1:8000
+ */
 class Handler extends ExceptionHandler
 {
     /**
@@ -29,7 +50,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param $exception \Exception
+     *
      * @return void
      *
      * @throws \Exception
@@ -42,8 +64,9 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param $request   \Illuminate\Http\Request
+     * @param $exception \Exception
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Exception

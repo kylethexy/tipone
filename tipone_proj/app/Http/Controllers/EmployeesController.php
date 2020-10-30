@@ -1,11 +1,15 @@
 <?php
 /**
  * Class EmployeesController | Http/EmployeesController.php
+ * php version 7.3.23
  *
- * @package Http
+ * @category   PHP
+ * @package    Http
  * @subpackage EmployeesController
- * @author Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
- * @version v1.2 (10/28/2020)
+ * @author     Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @version    GIT: @1.0.0@
+ * @link       http://127.0.0.1:8000
  */
 
 namespace App\Http\Controllers;
@@ -18,12 +22,19 @@ use App\Employee;
  *
  * This controller is responsible for handling the behavior of the employees
  * page for CRUD functionality.
+ *
+ * @category PHP
+ * @package  Controllers
+ * @author   Christian Kyle Soriano <soriano.christian.kyle@gmail.com>
+ * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link     http://127.0.0.1:8000
  */
 class EmployeesController extends Controller
 {
     /**
      * Create a new controller instance.
      * Add this so that guests can't access pages without an account
+     *
      * @return void
      */
     public function __construct()
@@ -39,7 +50,7 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = Employee::orderBy('first_name', 'asc')->paginate(10);
-        return view('employee.index')->with('employees' , $employees);
+        return view('employee.index')->with('employees', $employees);
     }
 
     /**
@@ -55,7 +66,8 @@ class EmployeesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param $request \Illuminate\Http\Request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,12 +76,14 @@ class EmployeesController extends Controller
         //First and Last name is required
         //Email address must be in email format and allow empty field
         //Phone must be numeric values only and allows blank values
-        $this->validate($request, [
+        $this->validate(
+            $request, [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'email|nullable',
             'phone' => 'numeric|nullable'
-        ]);
+            ]
+        );
 
         //Generate new employee
         $employee = new Employee();
@@ -84,13 +98,15 @@ class EmployeesController extends Controller
         $employee->save();
 
         //Confirm message
-        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Added');
+        return redirect('/company/'.$request->input('company_id'))
+            ->with('success', 'Employee Added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id // ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -105,7 +121,8 @@ class EmployeesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -117,8 +134,9 @@ class EmployeesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param $request \Illuminate\Http\Request
+     * @param int $id      //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -127,12 +145,14 @@ class EmployeesController extends Controller
         //First and Last name is required
         //Email address must be in email format and allow empty field
         //Phone must be numeric values only and allows blank values
-        $this->validate($request, [
+        $this->validate(
+            $request, [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'email|nullable',
             'phone' => 'numeric|nullable'
-        ]);
+            ]
+        );
 
         //Find employee
         $employee = Employee::find($id);
@@ -146,13 +166,15 @@ class EmployeesController extends Controller
         $employee->save();
 
         //Confirm message
-        return redirect('/company/'.$request->input('company_id'))->with('success', 'Employee Updated');
+        return redirect('/company/'.$request->input('company_id'))->
+            with('success', 'Employee Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id //ID
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -165,6 +187,7 @@ class EmployeesController extends Controller
         $employee->delete();
 
         //Confirm message
-        return redirect('/company/'.$company_id)->with('success', 'Employee Removed');
+        return redirect('/company/'.$company_id)->
+            with('success', 'Employee Removed');
     }
 }
